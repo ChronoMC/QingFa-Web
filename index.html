@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Minecraft 青笺建筑联邦 - Official</title>
+    <title>MC 青筏建筑联邦 - Official</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         * {
@@ -14,18 +14,18 @@
         }
 
         :root {
-            --primary: #6a11cb;
-            --secondary: #2575fc;
-            --accent: #ff00c8;
+            --primary: #1a936f;
+            --secondary: #88d498;
+            --accent: #ffd166;
             --dark: #121212;
             --light: #f8f9fa;
-            --success: #00e676;
-            --warning: #ffea00;
-            --danger: #ff1744;
+            --success: #06d6a0;
+            --warning: #ffd166;
+            --danger: #ef476f;
         }
 
         body {
-            background: linear-gradient(135deg, #0f0c29, #302b63, #24243e);
+            background: linear-gradient(135deg, #0a1929, #1e3c5a, #0f2a3f);
             color: var(--light);
             min-height: 100vh;
             overflow-x: hidden;
@@ -120,12 +120,12 @@
             font-size: 1rem;
             cursor: pointer;
             transition: all 0.3s ease;
-            box-shadow: 0 5px 15px rgba(106, 17, 203, 0.4);
+            box-shadow: 0 5px 15px rgba(26, 147, 111, 0.4);
         }
 
         .cta-button:hover {
             transform: translateY(-3px);
-            box-shadow: 0 8px 20px rgba(106, 17, 203, 0.6);
+            box-shadow: 0 8px 20px rgba(26, 147, 111, 0.6);
         }
 
         /* 英雄区域 */
@@ -437,9 +437,9 @@
         }
 
         @keyframes pulse {
-            0% { box-shadow: 0 0 0 0 rgba(0, 230, 118, 0.7); }
-            70% { box-shadow: 0 0 0 15px rgba(0, 230, 118, 0); }
-            100% { box-shadow: 0 0 0 0 rgba(0, 230, 118, 0); }
+            0% { box-shadow: 0 0 0 0 rgba(6, 214, 160, 0.7); }
+            70% { box-shadow: 0 0 0 15px rgba(6, 214, 160, 0); }
+            100% { box-shadow: 0 0 0 0 rgba(6, 214, 160, 0); }
         }
 
         @keyframes rotate-border {
@@ -473,47 +473,53 @@
     <div id="particles-js"></div>
     <nav class="navbar">
         <a href="#" class="logo">
-            <i class="fas fa-gem"></i>
-            Minecraft<span>青笺建筑联邦</span>
+            <i class="fas fa-landmark"></i>
+            Minecraft<span>青筏建筑联邦</span>
         </a>
         <div class="nav-links">
             <a href="#"><i class="fas fa-home"></i> 首页</a>
-
-            <a href="???"><i class="fas fa-question-circle"></i> 文档</a>
+            <a href="#"><i class="fas fa-tools"></i> 建筑工具</a>
+            <a href="#"><i class="fas fa-users"></i> 建筑师</a>
+            <a href="#"><i class="fas fa-images"></i> 作品集</a>
+            <a href="#"><i class="fas fa-book"></i> 建筑教程</a>
+            <a href="#"><i class="fas fa-question-circle"></i> 文档</a>
         </div>
         <button class="cta-button">立即加入 <i class="fas fa-play"></i></button>
     </nav>
     
     <section class="hero">
-        <h1 id="typewriter-title">体验最绚丽的 Minecraft 建筑</h1>
+        <h1 id="typewriter-title">用方块创造无限可能</h1>
         <p id="typewriter-desc"></p>
-        <button class="cta-button" id="hero-btn">加入我们 <i class="fas fa-play-circle"></i></button>
+        <button class="cta-button" id="hero-btn">加入联邦 <i class="fas fa-play-circle"></i></button>
+        <div class="server-ip" id="server-ip-hero" style="cursor:pointer;">
+            <i class="fas fa-network-wired"></i> 服务器地址: <span>qingfa.federal.com</span>
+            <span id="copy-tip-ip" style="display:none;margin-left:10px;color:var(--success);font-weight:bold;">已复制</span>
         </div>
     </section>
     
     <section class="features">
-        <h2 class="section-title">我们的特色</h2>
+        <h2 class="section-title">联邦特色</h2>
         <div class="features-grid">
             <div class="feature-card">
                 <div class="feature-icon">
-                    <i class="fas fa-campfire"></i>
+                    <i class="fas fa-city"></i>
                 </div>
-                <h3>史诗级生存</h3>
-                <p>在精心设计的世界中体验生存的乐趣，独特的经济系统，玩家商店和领地保护，让您的生存之旅更加精彩。</p>
+                <h3>史诗级建筑</h3>
+                <p>在青筏联邦，我们打造令人惊叹的史诗级建筑群，从宏伟城堡到未来都市，每一座建筑都是艺术的结晶。</p>
             </div>
             <div class="feature-card">
                 <div class="feature-icon">
-                    <i class="fas fa-magic"></i>
+                    <i class="fas fa-hands-helping"></i>
                 </div>
-                <h3>无限创造</h3>
-                <p>释放您的创造力！无限资源的世界，强大的建筑工具，定期举办建筑比赛，让您的杰作被所有人欣赏。</p>
+                <h3>协作共建</h3>
+                <p>加入我们的建筑团队，与数百位建筑师共同打造属于我们的方块世界，体验团队协作的无限乐趣。</p>
             </div>
             <div class="feature-card">
                 <div class="feature-icon">
-                    <i class="fas fa-dice-d20"></i>
+                    <i class="fas fa-trophy"></i>
                 </div>
-                <h3>趣味小游戏</h3>
-                <p>超过20种独特的小游戏，包括饥饿游戏、空岛战争、跑酷挑战等，每日轮换，永不无聊！</p>
+                <h3>建筑竞赛</h3>
+                <p>定期举办主题建筑比赛，展示你的创意才能，赢取丰厚奖励，让世界见证你的建筑才华。</p>
             </div>
         </div>
     </section>
@@ -527,57 +533,71 @@
                 <div class="status-text">在线 & 运行中</div>
             </div>
             <div class="players-online">加载中...</div>
+            <div class="status-info">
+                <div class="status-item">
+                    <h4>建筑师在线</h4>
+                    <p>86</p>
+                </div>
+                <div class="status-item">
+                    <h4>在建项目</h4>
+                    <p>24</p>
+                </div>
+                <div class="status-item">
+                    <h4>联邦成员</h4>
+                    <p>521</p>
+                </div>
+            </div>
         </div>
     </section>
     
     <!-- 游戏模式 -->
     <section class="game-modes">
-        <h2 class="section-title">游戏模式</h2>
+        <h2 class="section-title">建筑区域</h2>
         <div class="modes-grid">
             <div class="mode-card">
                 <div class="mode-header">
-                    <h3><i class="fas fa-shield-alt"></i> 生存模式</h3>
+                    <h3><i class="fas fa-castle"></i> 古典建筑区</h3>
                 </div>
                 <div class="mode-content">
-                    <p>在充满挑战的世界中生存下来，建立你的帝国，与其他玩家交易，征服强大的Boss！</p>
+                    <p>重现历史辉煌，打造哥特式大教堂、中式宫殿、罗马竞技场等经典建筑风格。</p>
                     <ul class="mode-features">
-                        <li><i class="fas fa-check"></i> 领地保护系统</li>
-                        <li><i class="fas fa-check"></i> 玩家经济与商店</li>
-                        <li><i class="fas fa-check"></i> 独特装备与附魔</li>
-                        <li><i class="fas fa-check"></i> 每月更新内容</li>
+                        <li><i class="fas fa-check"></i> 历史建筑模板</li>
+                        <li><i class="fas fa-check"></i> 古典装饰材料</li>
+                        <li><i class="fas fa-check"></i> 建筑风格指南</li>
+                        <li><i class="fas fa-check"></i> 每月主题竞赛</li>
                     </ul>
-                    <a class="cta-button" href="" download>加入生存 <i class="fas fa-sign-in-alt"></i></a>
+                    <a class="cta-button" href="">加入区域 <i class="fas fa-sign-in-alt"></i></a>
                 </div>
             </div>
             <div class="mode-card">
                 <div class="mode-header">
-                    <h3><i class="fas fa-wand-magic-sparkles"></i> 创造模式</h3>
+                    <h3><i class="fas fa-building"></i> 现代都市区</h3>
                 </div>
                 <div class="mode-content">
-                    <p>释放你的建筑天赋！无限资源，自由飞翔，打造令人惊叹的建筑杰作。</p>
+                    <p>设计未来感十足的摩天大楼、商业中心和城市景观，打造你的梦想都市。</p>
                     <ul class="mode-features">
-                        <li><i class="fas fa-check"></i> 世界编辑工具</li>
-                        <li><i class="fas fa-check"></i> 建筑比赛与奖励</li>
-                        <li><i class="fas fa-check"></i> 作品展示系统</li>
-                        <li><i class="fas fa-check"></i> 合作建设项目</li>
+                        <li><i class="fas fa-check"></i> 现代建材库</li>
+                        <li><i class="fas fa-check"></i> 城市规划工具</li>
+                        <li><i class="fas fa-check"></i> 交通系统支持</li>
+                        <li><i class="fas fa-check"></i> 团队协作项目</li>
                     </ul>
-                    <a class="cta-button" id="copy-creative-btn">加入创造 <i class="fas fa-sign-in-alt"></i></a>
+                    <a class="cta-button" id="copy-creative-btn">加入区域 <i class="fas fa-sign-in-alt"></i></a>
                     <span id="copy-tip-creative" style="display:none;margin-left:10px;color:var(--success);font-weight:bold;">已复制</span>
                 </div>
             </div>
             <div class="mode-card">
                 <div class="mode-header">
-                    <h3><i class="fas fa-gamepad"></i> 小游戏中心</h3>
+                    <h3><i class="fas fa-tree"></i> 自然生态区</h3>
                 </div>
                 <div class="mode-content">
-                    <p>超过20种趣味小游戏，快速匹配，与好友一起享受轻松愉快的游戏时光。</p>
+                    <p>创造与自然完美融合的建筑，打造生态村庄、树屋群落和花园景观。</p>
                     <ul class="mode-features">
-                        <li><i class="fas fa-check"></i> 饥饿游戏</li>
-                        <li><i class="fas fa-check"></i> 空岛战争</li>
-                        <li><i class="fas fa-check"></i> 跑酷挑战</li>
-                        <li><i class="fas fa-check"></i> 战墙与起床战争</li>
+                        <li><i class="fas fa-check"></i> 自然景观生成</li>
+                        <li><i class="fas fa-check"></i> 生态建筑指南</li>
+                        <li><i class="fas fa-check"></i> 地形改造工具</li>
+                        <li><i class="fas fa-check"></i> 植物多样性库</li>
                     </ul>
-                    <a class="cta-button" id="copy-minigame-btn">游玩小游戏 <i class="fas fa-sign-in-alt"></i></a>
+                    <a class="cta-button" id="copy-minigame-btn">加入区域 <i class="fas fa-sign-in-alt"></i></a>
                     <span id="copy-tip-minigame" style="display:none;margin-left:10px;color:var(--success);font-weight:bold;">已复制</span>
                 </div>
             </div>
@@ -586,20 +606,20 @@
     
     <!-- 页脚 -->
     <footer>
-        <div class="footer-logo">SparkleMC</div>
-        <p>极致 Minecraft 服务器体验</p>
+        <div class="footer-logo">青筏建筑联邦</div>
+        <p>打造Minecraft建筑艺术的殿堂</p>
         <div class="social-links">
             <a href="#"><i class="fab fa-discord"></i></a>
-            <a href="#"><i class="fab fa-youtube"></i></a>
-            <a href="#"><i class="fab fa-twitter"></i></a>
-            <a href="#"><i class="fab fa-instagram"></i></a>
+            <a href="#"><i class="fab fa-bilibili"></i></a>
+            <a href="#"><i class="fab fa-qq"></i></a>
+            <a href="#"><i class="fab fa-weixin"></i></a>
         </div>
         <div class="server-ip" id="server-ip-footer" style="cursor:pointer;">
-            <i class="fas fa-network-wired"></i> 服务器地址: <span>sparkle.craftmine.fun</span>
+            <i class="fas fa-network-wired"></i> 服务器地址: <span>qingfa.federal.com</span>
             <span id="copy-tip-footer" style="display:none;margin-left:10px;color:var(--success);font-weight:bold;">已复制</span>
         </div>
         <div class="copyright">
-            &copy; 2023 SparkleMC 服务器. 保留所有权利。Minecraft 是 Mojang 的商标。
+            &copy; 2023 Minecraft 青筏建筑联邦. 保留所有权利。Minecraft 是 Mojang 的商标。
         </div>
     </footer>
     
@@ -609,7 +629,7 @@
         // 初始化粒子背景
         particlesJS("particles-js", {
             particles: {
-                number: { value: 150, density: { enable: true, value_area: 900 } },
+                number: { value: 120, density: { enable: true, value_area: 900 } },
                 color: { value: "#ffffff" },
                 shape: { type: "circle" },
                 opacity: { value: 0.5, random: true },
@@ -648,18 +668,9 @@
         
         // 获取MC服务器总人数并显示
         function fetchMCOnline() {
-            fetch('https://api.imlazy.ink/mcapi/?host=sparkle.craftmine.fun&type=json')
-                .then(res => res.json())
-                .then(data => {
-                    if (typeof data.players_online !== 'undefined') {
-                        document.querySelector('.players-online').textContent = `${data.players_online} 玩家在线`;
-                    } else {
-                        document.querySelector('.players-online').textContent = `- 玩家在线`;
-                    }
-                })
-                .catch(() => {
-                    document.querySelector('.players-online').textContent = `- 玩家在线`;
-                });
+            // 这里使用假数据模拟在线人数
+            const onlinePlayers = Math.floor(Math.random() * 100) + 50;
+            document.querySelector('.players-online').textContent = `${onlinePlayers} 建筑师在线`;
         }
         // 初始加载
         fetchMCOnline();
@@ -698,47 +709,47 @@
             retract();
         }
 
-        // 10句随机slogan
+        // 10句建筑主题slogan
         const slogans = [
             [
-                '开启属于你的Minecraft传奇之旅！',
-                '在Sparkle服务器，体验最精彩的生存挑战、创意建造与刺激迷你游戏，等你来征服！'
+                '方块之间，创造无限可能！',
+                '青筏建筑联邦汇聚全球顶尖建筑师，共同打造Minecraft中最令人惊叹的建筑艺术。'
             ],
             [
-                '在Sparkle，世界由你点亮！',
-                '加入我们，畅玩顶级生存、创造模式与趣味迷你游戏，每一刻都充满惊喜！'
+                '用方块构筑你的梦想世界！',
+                '在青筏联邦，每一座建筑都是艺术品，每一位建筑师都是创造者。'
             ],
             [
-                '不只是游戏，是一场奇幻冒险！',
-                'Sparkle服务器等你加入，体验无与伦比的Minecraft世界，乐趣永不落幕！'
+                '不只是建造，是创造艺术！',
+                '加入我们，与数百位建筑师共同协作，打造属于我们的方块艺术殿堂。'
             ],
             [
-                '点燃你的想象力，闪耀Minecraft世界！',
-                'Sparkle服务器提供最炫酷的游戏体验，从生存到创造，从单人到多人，应有尽有！'
+                '建筑的艺术，方块的魔力！',
+                '青筏建筑联邦为您提供最专业的建筑工具和最热情的创作社区。'
             ],
             [
-                '加入Sparkle，感受Minecraft的真正魅力！',
-                '顶级服务器，极致体验，丰富玩法，活跃社区，等你一起书写精彩篇章！'
+                '让想象力在方块世界翱翔！',
+                '从宏伟城堡到未来都市，从古典园林到现代景观，一切尽在青筏建筑联邦。'
             ],
             [
-                '每一次上线，都是全新冒险！',
-                'Sparkle服务器为你打造最绚丽的Minecraft世界，生存、创造、迷你游戏一应俱全！'
+                '建造属于你的传奇！',
+                '在青筏联邦，每位建筑师都有机会创造属于自己的建筑传奇。'
             ],
             [
-                'Minecraft不止一个世界，Sparkle等你探索更多！',
-                '加入我们，畅玩多样模式，结交好友，享受永不枯燥的精彩旅程！'
+                '协作创造无限可能！',
+                '加入我们的建筑团队，共同打造令人惊叹的史诗级建筑群。'
             ],
             [
-                '在Sparkle，建造梦想，冒险无界！',
-                '我们提供最棒的生存与创造环境，还有超多迷你游戏等你来战！'
+                '方块世界中的建筑艺术殿堂！',
+                '青筏建筑联邦——Minecraft建筑艺术的最高殿堂。'
             ],
             [
-                'Minecraft的终极游乐场就在Sparkle！',
-                '顶级服务器品质，丰富游戏内容，每天都有新惊喜等你发现！'
+                '每一次设计，都是艺术创作！',
+                '在青筏联邦，我们相信建筑不仅是结构，更是艺术与灵魂的表达。'
             ],
             [
-                '来Sparkle，和全球玩家一起嗨翻Minecraft！',
-                '无论是建造大师、生存达人还是游戏狂热者，这里都有你的一席之地！'
+                '打造属于建筑师的乌托邦！',
+                '加入青筏建筑联邦，体验最纯粹的建筑艺术创作之旅。'
             ]
         ];
 
@@ -758,7 +769,7 @@
                                         setTimeout(nextSlogan, 200);
                                     });
                                 });
-                            }, 1500);
+                            }, 3500);
                         });
                     }, 300);
                 });
@@ -770,8 +781,8 @@
             const titleEl = document.getElementById('typewriter-title');
             const descEl = document.getElementById('typewriter-desc');
             // 初始内容
-            const firstTitle = '体验最绚丽的Minecraft冒险';
-            const firstDesc = '在Sparkle服务器探索无限可能！我们提供顶级的生存、创造和迷你游戏体验，拥有活跃的社区和永不间断的乐趣。';
+            const firstTitle = '方块之间，创造无限可能';
+            const firstDesc = '青筏建筑联邦汇聚全球顶尖建筑师，共同打造Minecraft中最令人惊叹的建筑艺术。';
             // 先打初始内容
             typeWriterEffect(titleEl, firstTitle, 80, function() {
                 setTimeout(function() {
@@ -786,7 +797,7 @@
                                     }, 200);
                                 });
                             });
-                        }, 1500);
+                        }, 3500);
                     });
                 }, 300);
             });
@@ -794,7 +805,7 @@
 
         // 复制到剪贴板并显示提示
         function copyServerAddress(tipEl) {
-            const address = 'sparkle.craftmine.fun';
+            const address = 'qingfa.federal.com';
             if (navigator.clipboard) {
                 navigator.clipboard.writeText(address);
             } else {
@@ -807,7 +818,7 @@
                 document.body.removeChild(textarea);
             }
             if (tipEl) {
-                tipEl.style.display = '';
+                tipEl.style.display = 'inline';
                 setTimeout(() => { tipEl.style.display = 'none'; }, 1500);
             }
         }
