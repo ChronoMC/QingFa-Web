@@ -1,0 +1,831 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Minecraft 青笺建筑联邦 - Official</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        :root {
+            --primary: #6a11cb;
+            --secondary: #2575fc;
+            --accent: #ff00c8;
+            --dark: #121212;
+            --light: #f8f9fa;
+            --success: #00e676;
+            --warning: #ffea00;
+            --danger: #ff1744;
+        }
+
+        body {
+            background: linear-gradient(135deg, #0f0c29, #302b63, #24243e);
+            color: var(--light);
+            min-height: 100vh;
+            overflow-x: hidden;
+            position: relative;
+        }
+
+        #particles-js {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            z-index: -1;
+        }
+
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1.5rem 5%;
+            backdrop-filter: blur(10px);
+            background: rgba(0, 0, 0, 0.4);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: white;
+            text-decoration: none;
+        }
+
+        .logo i {
+            color: var(--accent);
+            font-size: 2.2rem;
+        }
+
+        .logo span {
+            background: linear-gradient(45deg, var(--accent), var(--secondary));
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+        }
+
+        .nav-links a {
+            color: var(--light);
+            text-decoration: none;
+            font-weight: 500;
+            position: relative;
+            padding: 0.5rem 0;
+            transition: all 0.3s ease;
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 3px;
+            background: linear-gradient(90deg, var(--accent), var(--secondary));
+            transition: width 0.3s ease;
+            border-radius: 10px;
+        }
+
+        .nav-links a:hover {
+            color: #fff;
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        .cta-button {
+            background: linear-gradient(90deg, var(--primary), var(--secondary));
+            color: white;
+            padding: 0.8rem 1.8rem;
+            border: none;
+            border-radius: 50px;
+            font-weight: 600;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 5px 15px rgba(106, 17, 203, 0.4);
+        }
+
+        .cta-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(106, 17, 203, 0.6);
+        }
+
+        /* 英雄区域 */
+        .hero {
+            padding: 6rem 5% 4rem;
+            text-align: center;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .hero h1 {
+            font-size: 4.5rem;
+            margin-bottom: 1.5rem;
+            background: linear-gradient(45deg, #fff, var(--accent), var(--secondary));
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+            line-height: 1.1;
+        }
+
+        .hero p {
+            font-size: 1.4rem;
+            max-width: 800px;
+            margin: 0 auto 2.5rem;
+            color: rgba(255, 255, 255, 0.85);
+            line-height: 1.6;
+        }
+
+        .server-ip {
+            background: rgba(255, 255, 255, 0.1);
+            display: inline-flex;
+            align-items: center;
+            padding: 0.8rem 2rem;
+            border-radius: 50px;
+            font-size: 1.2rem;
+            margin-top: 1rem;
+            backdrop-filter: blur(5px);
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            transition: all 0.3s ease;
+        }
+
+        .server-ip:hover {
+            background: rgba(255, 255, 255, 0.2);
+            transform: translateY(-3px);
+        }
+
+        .server-ip span {
+            font-weight: 700;
+            margin-left: 10px;
+            color: var(--accent);
+        }
+
+        .features {
+            padding: 5rem 5%;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 4rem;
+            position: relative;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -15px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100px;
+            height: 4px;
+            background: linear-gradient(90deg, var(--accent), var(--secondary));
+            border-radius: 10px;
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .feature-card {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 20px;
+            padding: 2.5rem 2rem;
+            text-align: center;
+            transition: all 0.4s ease;
+            position: relative;
+            overflow: hidden;
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            backdrop-filter: blur(10px);
+        }
+
+        .feature-card:hover {
+            transform: translateY(-10px);
+            background: rgba(255, 255, 255, 0.08);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3);
+        }
+
+        .feature-card::before {
+            content: '';
+            position: absolute;
+            top: -2px;
+            left: -2px;
+            right: -2px;
+            bottom: -2px;
+            background: linear-gradient(45deg, var(--primary), var(--accent), var(--secondary));
+            z-index: -1;
+            border-radius: 22px;
+            animation: rotate-border 4s linear infinite;
+        }
+
+        .feature-icon {
+            font-size: 4rem;
+            margin-bottom: 1.5rem;
+            background: linear-gradient(45deg, var(--accent), var(--secondary));
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .feature-card h3 {
+            font-size: 1.8rem;
+            margin-bottom: 1rem;
+        }
+
+        .feature-card p {
+            color: rgba(255, 255, 255, 0.75);
+            line-height: 1.6;
+        }
+
+        .server-status {
+            padding: 5rem 5%;
+            max-width: 1200px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .status-container {
+            background: rgba(0, 0, 0, 0.3);
+            border-radius: 20px;
+            padding: 3rem;
+            margin-top: 2rem;
+            display: inline-block;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .status-indicator {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 15px;
+            margin-bottom: 1.5rem;
+        }
+
+        .status-dot {
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            background-color: var(--success);
+            box-shadow: 0 0 15px var(--success);
+            animation: pulse 2s infinite;
+        }
+
+        .status-text {
+            font-size: 1.8rem;
+            font-weight: 600;
+        }
+
+        .players-online {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin: 1.5rem 0;
+            color: var(--accent);
+        }
+
+        .status-info {
+            display: flex;
+            justify-content: center;
+            gap: 3rem;
+            margin-top: 2rem;
+            flex-wrap: wrap;
+        }
+
+        .status-item {
+            background: rgba(255, 255, 255, 0.05);
+            padding: 1.5rem;
+            border-radius: 15px;
+            min-width: 200px;
+        }
+
+        .status-item h4 {
+            font-size: 1.2rem;
+            margin-bottom: 0.5rem;
+            color: var(--accent);
+        }
+
+        .status-item p {
+            font-size: 1.8rem;
+            font-weight: 700;
+        }
+
+        .game-modes {
+            padding: 5rem 5%;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .modes-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .mode-card {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 20px;
+            overflow: hidden;
+            transition: all 0.4s ease;
+            border: 1px solid rgba(255, 255, 255, 0.08);
+        }
+
+        .mode-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3);
+        }
+
+        .mode-header {
+            padding: 1.5rem;
+            text-align: center;
+            background: linear-gradient(90deg, var(--primary), var(--secondary));
+        }
+
+        .mode-header h3 {
+            font-size: 1.8rem;
+        }
+
+        .mode-content {
+            padding: 2rem;
+        }
+
+        .mode-features {
+            list-style: none;
+            margin: 1.5rem 0;
+        }
+
+        .mode-features li {
+            padding: 0.8rem 0;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .mode-features li i {
+            color: var(--accent);
+        }
+
+        footer {
+            background: rgba(0, 0, 0, 0.4);
+            padding: 3rem 5%;
+            text-align: center;
+            margin-top: 5rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .footer-logo {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 1.5rem;
+            background: linear-gradient(45deg, var(--accent), var(--secondary));
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 1.5rem;
+            margin: 2rem 0;
+        }
+
+        .social-links a {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: rgba(255, 255, 255, 0.1);
+            color: white;
+            font-size: 1.5rem;
+            transition: all 0.3s ease;
+        }
+
+        .social-links a:hover {
+            background: var(--accent);
+            transform: translateY(-5px);
+        }
+
+        .copyright {
+            color: rgba(255, 255, 255, 0.6);
+            margin-top: 2rem;
+            font-size: 0.9rem;
+        }
+
+        @keyframes pulse {
+            0% { box-shadow: 0 0 0 0 rgba(0, 230, 118, 0.7); }
+            70% { box-shadow: 0 0 0 15px rgba(0, 230, 118, 0); }
+            100% { box-shadow: 0 0 0 0 rgba(0, 230, 118, 0); }
+        }
+
+        @keyframes rotate-border {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        @media (max-width: 992px) {
+            .hero h1 {
+                font-size: 3.5rem;
+            }
+            .nav-links {
+                display: none;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2.8rem;
+            }
+            .hero p {
+                font-size: 1.2rem;
+            }
+            .section-title {
+                font-size: 2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div id="particles-js"></div>
+    <nav class="navbar">
+        <a href="#" class="logo">
+            <i class="fas fa-gem"></i>
+            Minecraft<span>青笺建筑联邦</span>
+        </a>
+        <div class="nav-links">
+            <a href="#"><i class="fas fa-home"></i> 首页</a>
+
+            <a href="???"><i class="fas fa-question-circle"></i> 文档</a>
+        </div>
+        <button class="cta-button">立即加入 <i class="fas fa-play"></i></button>
+    </nav>
+    
+    <section class="hero">
+        <h1 id="typewriter-title">体验最绚丽的 Minecraft 建筑</h1>
+        <p id="typewriter-desc"></p>
+        <button class="cta-button" id="hero-btn">加入我们 <i class="fas fa-play-circle"></i></button>
+        </div>
+    </section>
+    
+    <section class="features">
+        <h2 class="section-title">我们的特色</h2>
+        <div class="features-grid">
+            <div class="feature-card">
+                <div class="feature-icon">
+                    <i class="fas fa-campfire"></i>
+                </div>
+                <h3>史诗级生存</h3>
+                <p>在精心设计的世界中体验生存的乐趣，独特的经济系统，玩家商店和领地保护，让您的生存之旅更加精彩。</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">
+                    <i class="fas fa-magic"></i>
+                </div>
+                <h3>无限创造</h3>
+                <p>释放您的创造力！无限资源的世界，强大的建筑工具，定期举办建筑比赛，让您的杰作被所有人欣赏。</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">
+                    <i class="fas fa-dice-d20"></i>
+                </div>
+                <h3>趣味小游戏</h3>
+                <p>超过20种独特的小游戏，包括饥饿游戏、空岛战争、跑酷挑战等，每日轮换，永不无聊！</p>
+            </div>
+        </div>
+    </section>
+    
+    <!-- 服务器状态 -->
+    <section class="server-status">
+        <h2 class="section-title">服务器状态</h2>
+        <div class="status-container">
+            <div class="status-indicator">
+                <div class="status-dot"></div>
+                <div class="status-text">在线 & 运行中</div>
+            </div>
+            <div class="players-online">加载中...</div>
+        </div>
+    </section>
+    
+    <!-- 游戏模式 -->
+    <section class="game-modes">
+        <h2 class="section-title">游戏模式</h2>
+        <div class="modes-grid">
+            <div class="mode-card">
+                <div class="mode-header">
+                    <h3><i class="fas fa-shield-alt"></i> 生存模式</h3>
+                </div>
+                <div class="mode-content">
+                    <p>在充满挑战的世界中生存下来，建立你的帝国，与其他玩家交易，征服强大的Boss！</p>
+                    <ul class="mode-features">
+                        <li><i class="fas fa-check"></i> 领地保护系统</li>
+                        <li><i class="fas fa-check"></i> 玩家经济与商店</li>
+                        <li><i class="fas fa-check"></i> 独特装备与附魔</li>
+                        <li><i class="fas fa-check"></i> 每月更新内容</li>
+                    </ul>
+                    <a class="cta-button" href="" download>加入生存 <i class="fas fa-sign-in-alt"></i></a>
+                </div>
+            </div>
+            <div class="mode-card">
+                <div class="mode-header">
+                    <h3><i class="fas fa-wand-magic-sparkles"></i> 创造模式</h3>
+                </div>
+                <div class="mode-content">
+                    <p>释放你的建筑天赋！无限资源，自由飞翔，打造令人惊叹的建筑杰作。</p>
+                    <ul class="mode-features">
+                        <li><i class="fas fa-check"></i> 世界编辑工具</li>
+                        <li><i class="fas fa-check"></i> 建筑比赛与奖励</li>
+                        <li><i class="fas fa-check"></i> 作品展示系统</li>
+                        <li><i class="fas fa-check"></i> 合作建设项目</li>
+                    </ul>
+                    <a class="cta-button" id="copy-creative-btn">加入创造 <i class="fas fa-sign-in-alt"></i></a>
+                    <span id="copy-tip-creative" style="display:none;margin-left:10px;color:var(--success);font-weight:bold;">已复制</span>
+                </div>
+            </div>
+            <div class="mode-card">
+                <div class="mode-header">
+                    <h3><i class="fas fa-gamepad"></i> 小游戏中心</h3>
+                </div>
+                <div class="mode-content">
+                    <p>超过20种趣味小游戏，快速匹配，与好友一起享受轻松愉快的游戏时光。</p>
+                    <ul class="mode-features">
+                        <li><i class="fas fa-check"></i> 饥饿游戏</li>
+                        <li><i class="fas fa-check"></i> 空岛战争</li>
+                        <li><i class="fas fa-check"></i> 跑酷挑战</li>
+                        <li><i class="fas fa-check"></i> 战墙与起床战争</li>
+                    </ul>
+                    <a class="cta-button" id="copy-minigame-btn">游玩小游戏 <i class="fas fa-sign-in-alt"></i></a>
+                    <span id="copy-tip-minigame" style="display:none;margin-left:10px;color:var(--success);font-weight:bold;">已复制</span>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- 页脚 -->
+    <footer>
+        <div class="footer-logo">SparkleMC</div>
+        <p>极致 Minecraft 服务器体验</p>
+        <div class="social-links">
+            <a href="#"><i class="fab fa-discord"></i></a>
+            <a href="#"><i class="fab fa-youtube"></i></a>
+            <a href="#"><i class="fab fa-twitter"></i></a>
+            <a href="#"><i class="fab fa-instagram"></i></a>
+        </div>
+        <div class="server-ip" id="server-ip-footer" style="cursor:pointer;">
+            <i class="fas fa-network-wired"></i> 服务器地址: <span>sparkle.craftmine.fun</span>
+            <span id="copy-tip-footer" style="display:none;margin-left:10px;color:var(--success);font-weight:bold;">已复制</span>
+        </div>
+        <div class="copyright">
+            &copy; 2023 SparkleMC 服务器. 保留所有权利。Minecraft 是 Mojang 的商标。
+        </div>
+    </footer>
+    
+    <!-- 粒子背景库 -->
+    <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
+    <script>
+        // 初始化粒子背景
+        particlesJS("particles-js", {
+            particles: {
+                number: { value: 150, density: { enable: true, value_area: 900 } },
+                color: { value: "#ffffff" },
+                shape: { type: "circle" },
+                opacity: { value: 0.5, random: true },
+                size: { value: 2.5, random: true },
+                line_linked: {
+                    enable: true,
+                    distance: 200,
+                    color: "#cccccc",
+                    opacity: 0.22,
+                    width: 1
+                },
+                move: {
+                    enable: true,
+                    speed: 0.45,
+                    direction: "none",
+                    random: true,
+                    straight: false,
+                    out_mode: "out",
+                    bounce: false
+                }
+            },
+            interactivity: {
+                detect_on: "canvas",
+                events: {
+                    onhover: { enable: true, mode: "attract" },
+                    onclick: { enable: true, mode: "push" },
+                    resize: true
+                },
+                modes: {
+                    attract: { distance: 220, duration: 2.2, speed: 0.18 },
+                    push: { particles_nb: 4 }
+                }
+            },
+            retina_detect: true
+        });
+        
+        // 获取MC服务器总人数并显示
+        function fetchMCOnline() {
+            fetch('https://api.imlazy.ink/mcapi/?host=sparkle.craftmine.fun&type=json')
+                .then(res => res.json())
+                .then(data => {
+                    if (typeof data.players_online !== 'undefined') {
+                        document.querySelector('.players-online').textContent = `${data.players_online} 玩家在线`;
+                    } else {
+                        document.querySelector('.players-online').textContent = `- 玩家在线`;
+                    }
+                })
+                .catch(() => {
+                    document.querySelector('.players-online').textContent = `- 玩家在线`;
+                });
+        }
+        // 初始加载
+        fetchMCOnline();
+        // 每30秒自动刷新
+        setInterval(fetchMCOnline, 30000);
+
+        // 打字机效果
+        function typeWriterEffect(element, text, speed, callback) {
+            element.textContent = '';
+            let i = 0;
+            function type() {
+                if (i < text.length) {
+                    element.textContent += text.charAt(i);
+                    i++;
+                    setTimeout(type, speed);
+                } else if (callback) {
+                    callback();
+                }
+            }
+            type();
+        }
+
+        // 回缩动画效果（打字机反向删除）
+        function typeRetractEffect(element, speed, callback) {
+            let text = element.textContent;
+            let i = text.length;
+            function retract() {
+                if (i > 0) {
+                    element.textContent = text.substring(0, i - 1);
+                    i--;
+                    setTimeout(retract, speed);
+                } else if (callback) {
+                    callback();
+                }
+            }
+            retract();
+        }
+
+        // 10句随机slogan
+        const slogans = [
+            [
+                '开启属于你的Minecraft传奇之旅！',
+                '在Sparkle服务器，体验最精彩的生存挑战、创意建造与刺激迷你游戏，等你来征服！'
+            ],
+            [
+                '在Sparkle，世界由你点亮！',
+                '加入我们，畅玩顶级生存、创造模式与趣味迷你游戏，每一刻都充满惊喜！'
+            ],
+            [
+                '不只是游戏，是一场奇幻冒险！',
+                'Sparkle服务器等你加入，体验无与伦比的Minecraft世界，乐趣永不落幕！'
+            ],
+            [
+                '点燃你的想象力，闪耀Minecraft世界！',
+                'Sparkle服务器提供最炫酷的游戏体验，从生存到创造，从单人到多人，应有尽有！'
+            ],
+            [
+                '加入Sparkle，感受Minecraft的真正魅力！',
+                '顶级服务器，极致体验，丰富玩法，活跃社区，等你一起书写精彩篇章！'
+            ],
+            [
+                '每一次上线，都是全新冒险！',
+                'Sparkle服务器为你打造最绚丽的Minecraft世界，生存、创造、迷你游戏一应俱全！'
+            ],
+            [
+                'Minecraft不止一个世界，Sparkle等你探索更多！',
+                '加入我们，畅玩多样模式，结交好友，享受永不枯燥的精彩旅程！'
+            ],
+            [
+                '在Sparkle，建造梦想，冒险无界！',
+                '我们提供最棒的生存与创造环境，还有超多迷你游戏等你来战！'
+            ],
+            [
+                'Minecraft的终极游乐场就在Sparkle！',
+                '顶级服务器品质，丰富游戏内容，每天都有新惊喜等你发现！'
+            ],
+            [
+                '来Sparkle，和全球玩家一起嗨翻Minecraft！',
+                '无论是建造大师、生存达人还是游戏狂热者，这里都有你的一席之地！'
+            ]
+        ];
+
+        function showSloganLoop(titleEl, descEl, slogans) {
+            function nextSlogan() {
+                // 随机选一句
+                const idx = Math.floor(Math.random() * slogans.length);
+                const [title, desc] = slogans[idx];
+                typeWriterEffect(titleEl, title, 80, function() {
+                    setTimeout(function() {
+                        typeWriterEffect(descEl, desc, 25, function() {
+                            setTimeout(function() {
+                                // 回缩副标题
+                                typeRetractEffect(descEl, 10, function() {
+                                    // 回缩主标题
+                                    typeRetractEffect(titleEl, 20, function() {
+                                        setTimeout(nextSlogan, 200);
+                                    });
+                                });
+                            }, 1500);
+                        });
+                    }, 300);
+                });
+            }
+            nextSlogan();
+        }
+
+        window.addEventListener('DOMContentLoaded', function() {
+            const titleEl = document.getElementById('typewriter-title');
+            const descEl = document.getElementById('typewriter-desc');
+            // 初始内容
+            const firstTitle = '体验最绚丽的Minecraft冒险';
+            const firstDesc = '在Sparkle服务器探索无限可能！我们提供顶级的生存、创造和迷你游戏体验，拥有活跃的社区和永不间断的乐趣。';
+            // 先打初始内容
+            typeWriterEffect(titleEl, firstTitle, 80, function() {
+                setTimeout(function() {
+                    typeWriterEffect(descEl, firstDesc, 25, function() {
+                        setTimeout(function() {
+                            // 回缩副标题
+                            typeRetractEffect(descEl, 10, function() {
+                                // 回缩主标题
+                                typeRetractEffect(titleEl, 20, function() {
+                                    setTimeout(function() {
+                                        showSloganLoop(titleEl, descEl, slogans);
+                                    }, 200);
+                                });
+                            });
+                        }, 1500);
+                    });
+                }, 300);
+            });
+        });
+
+        // 复制到剪贴板并显示提示
+        function copyServerAddress(tipEl) {
+            const address = 'sparkle.craftmine.fun';
+            if (navigator.clipboard) {
+                navigator.clipboard.writeText(address);
+            } else {
+                // 兼容旧浏览器
+                const textarea = document.createElement('textarea');
+                textarea.value = address;
+                document.body.appendChild(textarea);
+                textarea.select();
+                document.execCommand('copy');
+                document.body.removeChild(textarea);
+            }
+            if (tipEl) {
+                tipEl.style.display = '';
+                setTimeout(() => { tipEl.style.display = 'none'; }, 1500);
+            }
+        }
+        document.getElementById('hero-btn').addEventListener('click', function() {
+            copyServerAddress(document.getElementById('copy-tip-btn'));
+        });
+        document.getElementById('server-ip-hero').addEventListener('click', function() {
+            copyServerAddress(document.getElementById('copy-tip-ip'));
+        });
+        document.getElementById('server-ip-footer').addEventListener('click', function() {
+            copyServerAddress(document.getElementById('copy-tip-footer'));
+        });
+        document.getElementById('copy-creative-btn').addEventListener('click', function() {
+            copyServerAddress(document.getElementById('copy-tip-creative'));
+        });
+        document.getElementById('copy-minigame-btn').addEventListener('click', function() {
+            copyServerAddress(document.getElementById('copy-tip-minigame'));
+        });
+    </script>
+</body>
+</html>
